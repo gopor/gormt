@@ -5,8 +5,8 @@ const (
 	_tagJSON = "json"
 )
 
-// ColumusKey Columus type elem. 类型枚举
-type ColumusKey int
+// ColumnsKey Columus type elem. 类型枚举
+type ColumnsKey int
 
 const (
 	// ColumusKeyDefault default
@@ -32,11 +32,11 @@ type DBInfo struct {
 type TabInfo struct {
 	BaseInfo
 	SQLBuildStr string        // Create SQL statements.创建sql语句
-	Em          []ColumusInfo // Columus list .表列表组合
+	Em          []ColumnsInfo // Columus list .表列表组合
 }
 
-// ColumusInfo Columus list .表列信息
-type ColumusInfo struct {
+// ColumnsInfo Columus list .表列信息
+type ColumnsInfo struct {
 	BaseInfo
 	Type           string       // Type.类型标记
 	Index          []KList      // index list.index列表
@@ -52,7 +52,7 @@ type ForeignKey struct {
 
 // KList database index /unique_index list.数据库index /unique_index 列表
 type KList struct {
-	Key     ColumusKey // non_unique of (show keys from [table])
+	Key     ColumnsKey // non_unique of (show keys from [table])
 	KeyName string     // key_name of (show keys from [table])
 }
 

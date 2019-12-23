@@ -138,7 +138,7 @@ func (p *GenPackage) AddStruct(st GenStruct) {
 
 // Generate Get the result data.获取结果数据
 func (p *GenPackage) Generate() string {
-	p.genimport() // auto add import .补充 import
+	p.genImport() // auto add import .补充 import
 
 	var pa generate.PrintAtom
 	pa.Add("package", p.Name)
@@ -169,7 +169,7 @@ func (p *GenPackage) Generate() string {
 }
 
 // compensate and import .获取结果数据
-func (p *GenPackage) genimport() {
+func (p *GenPackage) genImport() {
 	for _, v := range p.Structs {
 		for _, v1 := range v.Em {
 			if v2, ok := cnf.EImportsHead[v1.Type]; ok {

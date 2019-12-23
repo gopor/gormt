@@ -89,7 +89,7 @@ func getPackageInfo(orm *mysqldb.MySqlDB, info *model.DBInfo) {
 }
 
 // getTableElement Get table columns and comments.获取表列及注释
-func getTableElement(orm *mysqldb.MySqlDB, tab string) (el []model.ColumusInfo) {
+func getTableElement(orm *mysqldb.MySqlDB, tab string) (el []model.ColumnsInfo) {
 	keyNums := make(map[string]int)
 	// get keys
 	var Keys []keys
@@ -104,7 +104,7 @@ func getTableElement(orm *mysqldb.MySqlDB, tab string) (el []model.ColumusInfo) 
 	orm.Raw("show FULL COLUMNS from " + tab).Scan(&list)
 	// filter gorm.Model.过滤 gorm.Model
 	if filterModel(&list) {
-		el = append(el, model.ColumusInfo{
+		el = append(el, model.ColumnsInfo{
 			Type: "gorm.Model",
 		})
 	}
@@ -113,13 +113,15 @@ func getTableElement(orm *mysqldb.MySqlDB, tab string) (el []model.ColumusInfo) 
 	// ForeignKey
 	var foreignKeyList []genForeignKey
 	if config.GetIsForeignKey() {
-		orm.Raw(fmt.Sprintf(`select table_schema,table_name,column_name,referenced_table_schema,referenced_table_name,referenced_column_name from INFORMATION_SCHEMA.KEY_COLUMN_USAGE
-		where table_schema = '%v' AND REFERENCED_TABLE_NAME IS NOT NULL AND TABLE_NAME = '%v'`, config.GetMysqlDbInfo().Database, tab)).Scan(&foreignKeyList)
+		orm.Raw(fmt.Sprintf(`select table_schema,table_name,column_name,referenced_table_schema,referenced_table_name,referenced_column_name ` +
+									 ` from INFORMATION_SCHEMA.KEY_COLUMN_USAGE` +
+									 ` where table_schema = '%v' AND REFERENCED_TABLE_NAME IS NOT NULL AND TABLE_NAME = '%v'`,
+									 config.GetMysqlDbInfo().Database, tab)).Scan(&foreignKeyList)
 	}
 	// ------------------end
 
 	for _, v := range list {
-		var tmp model.ColumusInfo
+		var tmp model.ColumnsInfo
 		tmp.Name = v.Field
 		tmp.Notes = v.Desc
 		tmp.Type = v.Type

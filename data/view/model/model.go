@@ -47,7 +47,7 @@ func (m *_Model) generate() string {
 }
 
 // genTableElement Get table columns and comments.获取表列及注释
-func (m *_Model) genTableElement(cols []ColumusInfo) (el []genstruct.GenElement) {
+func (m *_Model) genTableElement(cols []ColumnsInfo) (el []genstruct.GenElement) {
 	for _, v := range cols {
 		var tmp genstruct.GenElement
 		if strings.EqualFold(v.Type, "gorm.Model") { // gorm model
@@ -112,9 +112,9 @@ func (m *_Model) genTableElement(cols []ColumusInfo) (el []genstruct.GenElement)
 }
 
 // genForeignKey Get information about foreign key of table column.获取表列外键相关信息
-func (m *_Model) genForeignKey(col ColumusInfo) (fklist []genstruct.GenElement) {
+func (m *_Model) genForeignKey(col ColumnsInfo) (fklist []genstruct.GenElement) {
 	for _, v := range col.ForeignKeyList {
-		isMulti, isFind, notes := m.getColumusKeyMulti(v.TableName, v.ColumnName)
+		isMulti, isFind, notes := m.getColumnsKeyMulti(v.TableName, v.ColumnName)
 		if isFind {
 			var tmp genstruct.GenElement
 			tmp.SetNotes(notes)
@@ -141,7 +141,7 @@ func (m *_Model) genForeignKey(col ColumusInfo) (fklist []genstruct.GenElement) 
 	return
 }
 
-func (m *_Model) getColumusKeyMulti(tableName, col string) (isMulti bool, isFind bool, notes string) {
+func (m *_Model) getColumnsKeyMulti(tableName, col string) (isMulti bool, isFind bool, notes string) {
 	var haveGomod bool
 	for _, v := range m.info.TabList {
 		if strings.EqualFold(v.Name, tableName) {
