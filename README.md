@@ -131,18 +131,4 @@ go generate
 
 - Add common function (ormfunc)
 
-## 8. one windows gui tools
-
-![1](/image/gormt/1.png)
-
-![2](/image/gormt/2.jpg)
-
-![3](/image/gormt/3.jpg)
-
-![4](/image/gormt/4.jpg)
-
-[Download](https://github.com/xxjwxc/gormt/releases/download/v1.1.0/v1.0.zip)
-
-
-
 - ###### [link](https://xxjwxc.github.io/post/gormtools/)
