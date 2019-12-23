@@ -10,5 +10,5 @@ mysql_info:
     host : 127.0.0.1
     port : 3306
     username : root
-    password : qwer
-    database : oauth_db
+    password : 123456
+    database : otc_account

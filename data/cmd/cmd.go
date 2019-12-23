@@ -4,11 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/xxjwxc/public/tools"
-
-	"github.com/xxjwxc/gormt/data/view/gtools"
-
 	"github.com/xxjwxc/gormt/data/config"
+	"github.com/xxjwxc/gormt/data/view/gtools"
+	"github.com/xxjwxc/public/tools"
 
 	"github.com/spf13/cobra"
 	"gopkg.in/go-playground/validator.v9"
@@ -23,6 +21,10 @@ var rootCmd = &cobra.Command{
 	Use:   "main",
 	Short: "gorm mysql reflect tools",
 	Long:  `base on gorm tools for mysql database to golang struct`,
+	Args: func(cmd *cobra.Command, args []string) error {
+		cmd.SetArgs(os.Args)
+		return nil
+	},
 	Run: func(cmd *cobra.Command, args []string) {
 		gtools.Execute()
 		// Start doing things.开始做事情
