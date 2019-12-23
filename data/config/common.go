@@ -2,10 +2,11 @@ package config
 
 import (
 	"fmt"
-	"github.com/xxjwxc/public/dev"
-	"github.com/xxjwxc/public/tools"
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
+	"os"
+
+	"github.com/xxjwxc/public/dev"
+	"gopkg.in/yaml.v2"
 )
 
 // CfgBase base config struct
@@ -25,7 +26,8 @@ func init() {
 }
 
 func onInit() {
-	path := tools.GetModelPath()
+	//path := tools.GetModelPath()
+	path, _ := os.Getwd()
 	err := InitFile(path + "/config.yml")
 	if err != nil {
 		fmt.Println("InitFile: ", err.Error())
