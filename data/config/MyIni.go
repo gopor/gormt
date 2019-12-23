@@ -9,6 +9,7 @@ type Config struct {
 	OutDir        string      `yaml:"out_dir"`
 	Simple        bool        `yaml:"simple"`
 	IsJSONTag     bool        `yaml:"is_json_tag"`
+	IsOutSql      bool        `yaml:"is_out_sql"`
 	SingularTable bool        `yaml:"singular_table"`
 	IsForeignKey  bool        `yaml:"is_foreign_key"`
 }
@@ -71,6 +72,11 @@ func GetSimple() bool {
 // GetIsJSONTag json tag.json标记
 func GetIsJSONTag() bool {
 	return _map.IsJSONTag
+}
+
+// GetIsOutSql is_out_sql 标记
+func GetIsOutSql() bool {
+	return _map.IsOutSql
 }
 
 // GetIsForeignKey if is foreign key

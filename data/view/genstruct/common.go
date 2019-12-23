@@ -99,7 +99,7 @@ func (s *GenStruct) AddElement(e ...GenElement) {
 // Generates Get the result data.获取结果数据
 func (s *GenStruct) Generates() []string {
 	var p generate.PrintAtom
-	if !config.GetSimple() {
+	if config.GetIsOutSql() {
 		p.Add("/******sql******")
 		p.Add(s.SQLBuildStr)
 		p.Add("******sql******/")
